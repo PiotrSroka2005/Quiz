@@ -40,6 +40,7 @@
                 </StackLayout>
             </Frame>
             <Button x:Name="finishButton" Text="Zagraj ponownie" Clicked="FinishButton" BackgroundColor="#3578DE" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18" Margin="0,50,0,0" HorizontalOptions="Center" WidthRequest="250"/>
+            <Button x:Name="viewScoresButton" Text="Zobacz wyniki" Clicked="ViewScoresClicked" />
         </StackLayout>
     </StackLayout>
 

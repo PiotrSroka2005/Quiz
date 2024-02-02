@@ -101,6 +101,11 @@ namespace Quiz
             DisplayFinalResults(totalTime);
         }
 
+        private async void ViewScoresClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ScoresPage());
+        }
+
         private void DisplayFinalResults(double totalTime)
         {
             finishGameView.IsVisible = true;
