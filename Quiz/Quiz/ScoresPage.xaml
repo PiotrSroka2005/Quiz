@@ -4,14 +4,27 @@
              x:Class="Quiz.ScoresPage">
 
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="scoresListView">
-                <ListView.ItemTemplate>
+        <StackLayout BackgroundColor="#B5D8F1">
+            <Label Text="Ranking" FontSize="30" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,30,0,50"/>
+            <CollectionView x:Name="scoresCollectionView">
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding UserName}" Detail="{Binding ScoreAndTime}" />
+                        <Grid>
+                            <Frame BackgroundColor="White" CornerRadius="20" HorizontalOptions="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding UserName}" Grid.Column="0"/>
+                                    <Label Text="{Binding Score}" Grid.Column="1"/>
+                                </Grid>
+                            </Frame>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

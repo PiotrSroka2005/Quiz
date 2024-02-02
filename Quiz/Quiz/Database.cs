@@ -20,6 +20,10 @@ namespace Quiz
         {
             return database.Table<UserResult>().ToListAsync();
         }
+        public Task<UserResult> GetUserName(string userName)
+        {
+            return database.Table<UserResult>().Where(i => i.UserName == userName).FirstOrDefaultAsync();
+        }
 
         public Task<int> SaveResultAsync(UserResult result)
         {

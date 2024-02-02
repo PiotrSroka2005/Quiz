@@ -22,7 +22,7 @@ namespace Quiz
         private async void LoadScores()
         {
             var scores = await App.Database.GetResultsAsync();
-            scoresListView.ItemsSource = scores
+            scoresCollectionView.ItemsSource = scores
                 .OrderByDescending(score => score.Score)
                 .ThenBy(score => score.TotalTime);
         }

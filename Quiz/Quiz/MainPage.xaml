@@ -8,7 +8,8 @@
             <Frame BackgroundColor="white" CornerRadius="20" Padding="0" WidthRequest="250">
                 <Entry x:Name="userNameEntry" Placeholder="Nick" BackgroundColor="Transparent" HorizontalOptions="Center" WidthRequest="200"/>
             </Frame>
-            <Button x:Name="startButton" Text="Rozpocznij quiz" Clicked="StartQuiz" BackgroundColor="#3578DE" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18" Margin="0,20,0,0"/>
+            <Button x:Name="startButton" Text="Rozpocznij quiz" Clicked="StartQuiz" BackgroundColor="#3578DE" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18" Margin="0,20,0,30"/>
+            <Button x:Name="viewScoresButton" Text="Zobacz wyniki" Clicked="ViewScoresClicked" />
         </StackLayout>
 
         <StackLayout x:Name="gameView" Spacing="20" Padding="15" IsVisible="false">
@@ -40,7 +41,6 @@
                 </StackLayout>
             </Frame>
             <Button x:Name="finishButton" Text="Zagraj ponownie" Clicked="FinishButton" BackgroundColor="#3578DE" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18" Margin="0,50,0,0" HorizontalOptions="Center" WidthRequest="250"/>
-            <Button x:Name="viewScoresButton" Text="Zobacz wyniki" Clicked="ViewScoresClicked" />
         </StackLayout>
     </StackLayout>
 
