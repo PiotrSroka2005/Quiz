@@ -89,7 +89,7 @@ namespace Quiz
             questionLabel.IsVisible = false;
             answerEntry.IsVisible = false;
             submitAnswerButton.IsVisible = false;
-            feedbackLabel.Text = $"Koniec quizu. Twój wynik: {currentScore} punktów. Całkowity czas: {totalTime} sekund.";
+            feedbackLabel.Text = $"Koniec quizu. Twój wynik: {currentScore} punktów. Całkowity czas: {totalTime.ToString("F2")} sekund.";
             feedbackLabel.IsVisible = true;
         }
 
