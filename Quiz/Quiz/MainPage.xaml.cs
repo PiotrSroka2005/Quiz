@@ -11,45 +11,86 @@ namespace Quiz
 {
     public partial class MainPage : ContentPage
     {
-        private int currentScore = 0;
+        private int currentQuestionIndex = 0;
+        private int currentScore = 0;        
+        private List<int> questions = new List<int>();
         private Stopwatch stopwatch = new Stopwatch();
         private List<double> times = new List<double>();
 
         public MainPage()
         {
             InitializeComponent();
+            GenerateQuestions();
         }
 
-        private async void StartQuiz(object sender, EventArgs e)
+        private void GenerateQuestions()
         {
-            currentScore = 0; // Reset current score
-            times.Clear(); // Clear previous times
+            Random random = new Random();
+            questions = Enumerable.Range(0, 5).Select(_ => random.Next(1, 1001)).ToList();
+        }
 
-            for (int i = 0; i < 5; i++)
+        private void StartQuiz(object sender, EventArgs e)
+        {
+            currentScore = 0;
+            currentQuestionIndex = 0;
+            times.Clear();
+            ShowNextQuestion();
+        }
+
+        private void ShowNextQuestion()
+        {
+            if (currentQuestionIndex < questions.Count)
             {
-                int number = new Random().Next(1, 1001); // Generate random number
-                stopwatch.Restart(); // Restart stopwatch for each question
-                string answer = await DisplayPromptAsync($"Pytanie {i + 1}", $"Podwojona wartość {number} to:"); // Ask question
-                stopwatch.Stop(); // Stop the stopwatch
-
-                if (int.TryParse(answer, out int result) && result == number * 2)
-                {
-                    // If answer is correct
-                    currentScore++; // Increment score
-                    times.Add(stopwatch.Elapsed.TotalSeconds); // Record time
-                    await DisplayAlert("Poprawna odpowiedź", "Brawo! To jest poprawna odpowiedź.", "OK");
-                }
-                else
-                {
-                    // If answer is incorrect
-                    times.Add(stopwatch.Elapsed.TotalSeconds); // Record time
-                    await DisplayAlert("Zła odpowiedź", $"Niestety, to jest zła odpowiedź. Poprawna odpowiedź to: {number * 2}", "OK");
-                }
+                questionLabel.IsVisible = true;
+                questionLabel.Text = $"Podwojona wartość {questions[currentQuestionIndex]} to:";
+                answerEntry.IsVisible = true;
+                submitAnswerButton.IsVisible = true;
+                feedbackLabel.IsVisible = false;
+                stopwatch.Restart();
             }
+            else
+            {
+                FinishQuiz();
+            }
+        }
 
-            double totalTime = times.Sum(); // Calculate total time
-            SaveResult(userNameEntry.Text, totalTime, currentScore); // Save result to database
-            await DisplayAlert("Koniec quizu", $"Twój wynik: {currentScore} punktów. Całkowity czas: {totalTime} sekund.", "OK"); // Show final score and time
+        private async void SubmitAnswer(object sender, EventArgs e)
+        {
+            stopwatch.Stop();
+            int correctAnswer = questions[currentQuestionIndex] * 2;
+            if (int.TryParse(answerEntry.Text, out int userAnswer) && userAnswer == correctAnswer)
+            {
+                currentScore++;
+                feedbackLabel.Text = "Poprawna odpowiedź!";
+            }
+            else
+            {
+                feedbackLabel.Text = $"Niestety, to jest zła odpowiedź. Poprawna odpowiedź to: {correctAnswer}";
+            }
+            feedbackLabel.IsVisible = true;
+
+            times.Add(stopwatch.Elapsed.TotalSeconds);
+            currentQuestionIndex++;
+            answerEntry.Text = string.Empty; // Clear answer entry
+
+            await Task.Delay(2000); // Short delay before next question
+            ShowNextQuestion();
+        }
+
+        private void FinishQuiz()
+        {
+            double totalTime = times.Sum();
+            SaveResult(userNameEntry.Text, totalTime, currentScore);
+            DisplayFinalResults(totalTime);
+        }
+
+        private void DisplayFinalResults(double totalTime)
+        {
+            questionLabel.IsVisible = false;
+            answerEntry.IsVisible = false;
+            submitAnswerButton.IsVisible = false;
+            feedbackLabel.Text = $"Koniec quizu. Twój wynik: {currentScore} punktów. Całkowity czas: {totalTime} sekund.";
+            feedbackLabel.IsVisible = true;
         }
 
         private void SaveResult(string userName, double totalTime, int score)

@@ -5,7 +5,11 @@
 
     <StackLayout Spacing="20" Padding="15">
         <Entry x:Name="userNameEntry" Placeholder="Wpisz swój nick" />
-        <Button Text="Rozpocznij quiz" Clicked="StartQuiz" />
+        <Button x:Name="startButton" Text="Rozpocznij quiz" Clicked="StartQuiz" />
+        <Label x:Name="questionLabel" Text="Pytanie pojawi się tutaj" IsVisible="False" />
+        <Entry x:Name="answerEntry" Placeholder="Twoja odpowiedź" IsVisible="False" />
+        <Button x:Name="submitAnswerButton" Text="Zatwierdź odpowiedź" Clicked="SubmitAnswer" IsVisible="False" />
+        <Label x:Name="feedbackLabel" Text="" IsVisible="False" />
     </StackLayout>
 
 
