@@ -12,5 +12,14 @@ namespace Quiz
         public string UserName { get; set; }
         public double TotalTime { get; set; }
         public int Score { get; set; }
+
+        public UserResult(string userName, double totalTime, int score)
+        {
+            UserName = userName;
+            TotalTime = totalTime;
+            Score = score;
+        }
+        public UserResult() { }
     }
+
 }

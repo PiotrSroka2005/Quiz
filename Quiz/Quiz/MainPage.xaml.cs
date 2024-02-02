@@ -54,7 +54,7 @@ namespace Quiz
 
         private void SaveResult(string userName, double totalTime, int score)
         {
-            // Tutaj dodaj kod do zapisywania wyniku w bazie danych SQLite
+            App.Database.SaveResultAsync(new UserResult(userName, totalTime, score));
         }
     }
 
