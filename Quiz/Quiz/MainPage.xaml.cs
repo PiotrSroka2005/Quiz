@@ -31,13 +31,20 @@ namespace Quiz
 
         private void StartQuiz(object sender, EventArgs e)
         {
-            currentScore = 0;
-            currentQuestionIndex = 0;
-            times.Clear();
-            startGameView.IsVisible = false;
-            finishGameView.IsVisible = false;
-            gameView.IsVisible = true;
-            ShowNextQuestion();
+            if (string.IsNullOrEmpty(userNameEntry.Text))
+            {
+                DisplayAlert("Alert", "pole nie może być puste!", "OK");
+            }
+            else
+            {
+                currentScore = 0;
+                currentQuestionIndex = 0;
+                times.Clear();
+                startGameView.IsVisible = false;
+                finishGameView.IsVisible = false;
+                gameView.IsVisible = true;
+                ShowNextQuestion();
+            }
         }
 
         private void PlayAgainButton(object sender, EventArgs e)
