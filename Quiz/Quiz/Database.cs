@@ -31,10 +31,13 @@ namespace Quiz
 
             if (existingResult != null)
             {
-                // Jeśli wynik istnieje, zaktualizuj go
-                existingResult.TotalTime += result.TotalTime;
-                existingResult.Score += result.Score;
-                await database.UpdateAsync(existingResult);
+                // Jeśli wynik istnieje i nowy wynik jest większy, zaktualizuj go
+                if (result.Score > existingResult.Score)
+                {
+                    existingResult.TotalTime = result.TotalTime;
+                    existingResult.Score = result.Score;
+                    await database.UpdateAsync(existingResult);
+                }
             }
             else
             {
