@@ -6,7 +6,7 @@
     <StackLayout BackgroundColor="#B5D8F1">
         <StackLayout x:Name="startGameView" HorizontalOptions="Center" Margin="0,50,0,0">
             <Frame BackgroundColor="white" CornerRadius="20" Padding="0" WidthRequest="250">
-                <Entry x:Name="userNameEntry" Placeholder="Nick" BackgroundColor="Transparent" HorizontalOptions="Center" WidthRequest="200"/>
+                <Entry x:Name="userNameEntry" Placeholder="Nick" BackgroundColor="Transparent" HorizontalOptions="Center" WidthRequest="200" HorizontalTextAlignment="Center"/>
             </Frame>
             <Button x:Name="startButton" Text="Rozpocznij quiz" Clicked="StartQuiz" BackgroundColor="#3578DE" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18" Margin="0,20,0,20"/>
             <Button x:Name="viewScoresButton" Text="Zobacz wyniki" Clicked="ViewScoresClicked" BackgroundColor="#5785CA" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18"/>
@@ -40,7 +40,7 @@
                     <Label x:Name="resultTime" Text="20s" FontSize="20" />
                 </StackLayout>
             </Frame>
-            <Button x:Name="finishButton" Text="Zagraj ponownie" Clicked="FinishButton" BackgroundColor="#3578DE" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18" Margin="0,50,0,0" HorizontalOptions="Center" WidthRequest="250"/>
+            <Button x:Name="playAgainButton" Text="Zagraj ponownie" Clicked="PlayAgainButton" BackgroundColor="#3578DE" TextColor="white" CornerRadius="20" TextTransform="None" FontSize="18" Margin="0,50,0,0" HorizontalOptions="Center" WidthRequest="250"/>
         </StackLayout>
     </StackLayout>
 

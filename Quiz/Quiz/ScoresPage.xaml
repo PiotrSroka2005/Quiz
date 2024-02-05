@@ -24,7 +24,7 @@
                                 <Label HorizontalOptions="Center" Text="Miejsce:" FontAttributes="Bold" Grid.Column="0"/>
                                 <Label HorizontalOptions="Center" Text="Nick:" FontAttributes="Bold" Grid.Column="1"/>
                                 <Label HorizontalOptions="Center" Text="Punkty:" FontAttributes="Bold" Grid.Column="2"/>
-                                <Label HorizontalOptions="Center" Text="Czas w sek:" FontAttributes="Bold" Grid.Column="3"/>
+                                <Label HorizontalOptions="Center" Text="Czas:" FontAttributes="Bold" Grid.Column="3"/>
                             </Grid>
                         </Frame>
                     </Grid>
@@ -43,7 +43,7 @@
                                             <Label HorizontalOptions="Center" x:Name="rankingPlace"  Text="{Binding RankingPosition}" Grid.Column="0"/>
                                             <Label HorizontalOptions="Center" Text="{Binding UserName}" Grid.Column="1"/>
                                             <Label HorizontalOptions="Center" Text="{Binding Score}"  Grid.Column="2"/>
-                                            <Label HorizontalOptions="Center" Text="{Binding TotalTime, StringFormat='{0:F2}'}" Grid.Column="5"/>
+                                            <Label HorizontalOptions="Center" Text="{Binding TotalTime, StringFormat='{0:F2}s'}" Grid.Column="3"/>
                                         </Grid>
                                     </Frame>
                                 </Grid>

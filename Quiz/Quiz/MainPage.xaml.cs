@@ -40,10 +40,11 @@ namespace Quiz
             ShowNextQuestion();
         }
 
-        private void FinishButton(object sender, EventArgs e)
+        private void PlayAgainButton(object sender, EventArgs e)
         {
             finishGameView.IsVisible = false;
             startGameView.IsVisible = true;
+            GenerateQuestions();
         }
 
         private void ShowNextQuestion()
