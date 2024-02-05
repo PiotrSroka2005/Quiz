@@ -5,19 +5,27 @@
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="#B5D8F1">
-            <Label Text="Ranking" FontSize="30" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,30,0,50"/>
+            <Label Text="Ranking" FontSize="30" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,30,0,30"/>
             <CollectionView x:Name="scoresCollectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <Frame BackgroundColor="White" CornerRadius="20" HorizontalOptions="Center">
+                            <Frame BackgroundColor="White" CornerRadius="20" HorizontalOptions="Center" WidthRequest="280" Margin="0,15,0,0">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding UserName}" Grid.Column="0"/>
-                                    <Label Text="{Binding Score}" Grid.Column="1"/>
+                                    <Label x:Name="rankingPlace" Text="{Binding RankingPosition}" Grid.Column="0"/>
+                                    <Label Text="{Binding UserName}" Grid.Column="1"/>
+                                    <Label Text="Punkty:" FontAttributes="Bold" Grid.Column="2"/>
+                                    <Label Text="{Binding Score}" Grid.Column="3"/>
+                                    <Label Text="Czas:" FontAttributes="Bold" Grid.Column="4"/>
+                                    <Label Text="{Binding TotalTime, StringFormat='{0:F2}'}" Grid.Column="5"/>
                                 </Grid>
                             </Frame>
                         </Grid>

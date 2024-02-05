@@ -25,9 +25,23 @@ namespace Quiz
             return database.Table<UserResult>().Where(i => i.UserName == userName).FirstOrDefaultAsync();
         }
 
-        public Task<int> SaveResultAsync(UserResult result)
+        public async Task SaveResultAsync(UserResult result)
         {
-            return database.InsertAsync(result);
+            var existingResult = await GetUserName(result.UserName);
+
+            if (existingResult != null)
+            {
+                // Jeśli wynik istnieje, zaktualizuj go
+                existingResult.TotalTime += result.TotalTime;
+                existingResult.Score += result.Score;
+                await database.UpdateAsync(existingResult);
+            }
+            else
+            {
+                // Jeśli wynik nie istnieje, wstaw nowy rekord
+                await database.InsertAsync(result);
+            }
         }
+
     }
 }

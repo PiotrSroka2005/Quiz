@@ -22,9 +22,25 @@ namespace Quiz
         private async void LoadScores()
         {
             var scores = await App.Database.GetResultsAsync();
-            scoresCollectionView.ItemsSource = scores
+
+            var sortedScores = scores
                 .OrderByDescending(score => score.Score)
-                .ThenBy(score => score.TotalTime);
+                .ThenBy(score => score.TotalTime)
+                .ToList();
+
+            var groupedScores = sortedScores
+                .GroupBy(score => score.Score)
+                .SelectMany(group => group.OrderBy(score => score.TotalTime))
+                .ToList();
+
+            for (int i = 0; i < groupedScores.Count; i++)
+            {
+                groupedScores[i].RankingPosition = i + 1;
+            }
+
+            scoresCollectionView.ItemsSource = groupedScores;
+
         }
+
     }
 }

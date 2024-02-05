@@ -119,21 +119,7 @@ namespace Quiz
 
         private void SaveResult(string userName, double totalTime, int score)
         {
-            // Sprawdź, czy istnieje rekord z podanym userName
-            var existingResult = App.Database.GetUserName(userName).Result;
-
-            if (existingResult != null)
-            {
-                // Jeśli rekord istnieje, zaktualizuj go
-                existingResult.TotalTime = totalTime;
-                existingResult.Score = score;
-                App.Database.SaveResultAsync(existingResult);
-            }
-            else
-            {
-                // Jeśli rekord nie istnieje, dodaj nowy rekord
-                App.Database.SaveResultAsync(new UserResult(userName, totalTime, score));
-            }
+            App.Database.SaveResultAsync(new UserResult(userName, totalTime, score));
         }
 
     }
