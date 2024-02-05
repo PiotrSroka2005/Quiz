@@ -1,38 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Quiz.ScoresPage">
+             x:Class="Quiz.ScoresPage" Title="Ranking">
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="#B5D8F1">
-            <Label Text="Ranking" FontSize="30" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,30,0,30"/>
-            <CollectionView x:Name="scoresCollectionView">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Frame BackgroundColor="White" CornerRadius="20" HorizontalOptions="Center" WidthRequest="280" Margin="0,15,0,0">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Ranking" FontSize="30" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,30,0,30"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Frame BackgroundColor="White" CornerRadius="20" HorizontalOptions="Center" Grid.Row="0" WidthRequest="280" Margin="0,15,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label HorizontalOptions="Center" Text="Miejsce:" FontAttributes="Bold" Grid.Column="0"/>
+                                <Label HorizontalOptions="Center" Text="Nick:" FontAttributes="Bold" Grid.Column="1"/>
+                                <Label HorizontalOptions="Center" Text="Punkty:" FontAttributes="Bold" Grid.Column="2"/>
+                                <Label HorizontalOptions="Center" Text="Czas w sek:" FontAttributes="Bold" Grid.Column="3"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                    <CollectionView x:Name="scoresCollectionView">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
                                 <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label x:Name="rankingPlace" Text="{Binding RankingPosition}" Grid.Column="0"/>
-                                    <Label Text="{Binding UserName}" Grid.Column="1"/>
-                                    <Label Text="Punkty:" FontAttributes="Bold" Grid.Column="2"/>
-                                    <Label Text="{Binding Score}" Grid.Column="3"/>
-                                    <Label Text="Czas:" FontAttributes="Bold" Grid.Column="4"/>
-                                    <Label Text="{Binding TotalTime, StringFormat='{0:F2}'}" Grid.Column="5"/>
+                                    <Frame BackgroundColor="White" CornerRadius="20" HorizontalOptions="Center" WidthRequest="280" Margin="0,15,0,0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Label HorizontalOptions="Center" x:Name="rankingPlace"  Text="{Binding RankingPosition}" Grid.Column="0"/>
+                                            <Label HorizontalOptions="Center" Text="{Binding UserName}" Grid.Column="1"/>
+                                            <Label HorizontalOptions="Center" Text="{Binding Score}"  Grid.Column="2"/>
+                                            <Label HorizontalOptions="Center" Text="{Binding TotalTime, StringFormat='{0:F2}'}" Grid.Column="5"/>
+                                        </Grid>
+                                    </Frame>
                                 </Grid>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
